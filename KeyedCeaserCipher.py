@@ -2,7 +2,6 @@ print('Greetings User!\n'
       'This program will encrypt your input. To decrypt it, you must remember the password.\n'
       'This program creates a keyed caesar cipher.\n')
 
-
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
             'w', 'x', 'y', 'z']
 cipher = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -21,13 +20,20 @@ password = tempPassword
 interval = 0
 #This loop creates the cipher
 for letter in password:
-    cipher.remove(letter)
-    cipher.insert(interval,letter)
-    interval += 1
+    if (letter.isalpha()):
+        cipher.remove(letter)
+        cipher.insert(interval,letter)
+        interval += 1
 
-options = input('\n'
-                'To encrypt a message, type ENCRYPT.\n'
-                'To decrypt a message, type DECRYPT\n').lower()
+validInput = False
+while not validInput:
+    options = input('\n'
+                    'To encrypt a message, type ENCRYPT.\n'
+                    'To decrypt a message, type DECRYPT\n').lower()
+    if options == 'encrypt' or options == 'decrypt':
+        validInput = True
+    else:
+        print('ERROR: PLEASE TRY AGAIN')
 
 message = input('\nInput the text you would like to ' + options + ':\n')
 
